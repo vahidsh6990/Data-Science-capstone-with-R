@@ -1,0 +1,16 @@
+library(tidyverse)
+#url <- "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-RP0321EN-SkillsNetwork/labs/datasets/seoul_bike_sharing.csv"  
+#download.file(url, destfile = 'seoul_bike_sharing4.csv')
+df <- read.csv('seoul_bike_sharing4.csv', colClasses=c("DATE"="character"))
+format(df$DATE, "%Y-%m-%d")
+df$HOUR <- factor(df$HOUR, ordered = TRUE)
+
+str(df)
+summary(df)
+sum(is.na(df))
+sum(df$HOLIDAY)
+sum(df$DATE)
+
+#scatter
+ggplot(data = df) +
+  geom_point(mapping = aes(x = DATE, y = RENTED_BIKE_COUNT), alpha = 0.5)
